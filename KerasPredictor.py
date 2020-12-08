@@ -22,7 +22,7 @@ from keras.layers import Dense # A layer is each set of nodes that make up the n
 dataCSV = 'banknote-authentication.csv'
 dataSeperator = ','
 # The number of input dimensions (the width of the input layer)
-inputDims = 4 # NOTE: this number should be 1 less than the total number of data points per row
+# inputDims = 4 # NOTE: this number should be 1 less than the total number of data points per row
 outputDims = 10
 #
 # end: GLOBAL VARIABLES
@@ -31,6 +31,9 @@ outputDims = 10
 # Read in and split the data elements by a seperator, both the input file and the delimiter are
 # defined above.
 dataset = loadtxt(dataCSV, delimiter = dataSeperator)
+
+# Get the width for the input layer
+inputDims = len(dataset[0]) - 1
 
 # Split the data into two sets
 # For n is the length of a row of data -- X dataset = 0:(n - 1), Y dataset = n
