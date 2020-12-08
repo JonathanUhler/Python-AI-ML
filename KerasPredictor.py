@@ -128,6 +128,7 @@ for i in range(len(prediction)):
 
     # Declare the expected result
     answer = Y[i]
+    highestPossibleAnswer = 0
 
     # For each prediction, there will be multiple results, so put them into a string
     predictionString = str(prediction[i])
@@ -142,6 +143,16 @@ for i in range(len(prediction)):
 
     # Find the closest prediction
     bestPred = closest(predictions, answer)
+
+    # Account for datasets that might have answers larger than 1 and find the largest answer in the dataset
+    for j in range(len(Y)):
+
+        if (Y[j] >= highestPossibleAnswer):
+            highestPossibleAnswer = Y[j]
+
+    # Adjust the output value to change from 0-1 to 0-the max answer value
+    if (highestPossibleAnswer > 1):
+        bestPred *= highestPossibleAnswer
 
     # Print each of the test casses from the testing dataset
     print("Test case: " + str(i + 1))
