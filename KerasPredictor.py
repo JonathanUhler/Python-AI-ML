@@ -12,17 +12,26 @@ from keras.optimizers import SGD
 from keras.models import Sequential # Keras is the AI/ML API. A Keras model is the entire network
 from keras.layers import Dense # A layer is each set of nodes that make up the network
 import matplotlib.pyplot as plt # MatPlotLib is the library used to visualize the data
+import json # JSON library is used to read config data from a config file
 
 
 # =================================================================================================
 # GLOBAL VARIABLES
-# 
-# Change here for easy access:
+# To change these config values, go to "PredictorConfig.json"
 #
-dataCSV = 'banknote-authentication.csv' # --> The input with with data for training and testing
-dataSeperator = ',' # --> The character that seperates data elements in the input file
-outputDims = 10 # --> The width of the output layer
-visualizer = False # --> The toggle for whether or not a graph is displayed when the NN finishes
+with open('PredictorConfig.json') as PredictorConfigData:
+    data = json.load(PredictorConfigData)
+#
+data = data['configData']
+#
+dataCSV = data[0] # --> The input with with data for training and testing
+dataSeperator = data[1] # --> The character that seperates data elements in the input file
+outputDims = data[2] # --> The width of the output layer
+visualizer = data[3] # --> The toggle for whether or not a graph is displayed when the NN finishes
+# dataCSV = 'banknote-authentication.csv' # --> The input with with data for training and testing
+# dataSeperator = ',' # --> The character that seperates data elements in the input file
+# outputDims = 10 # --> The width of the output layer
+# visualizer = False # --> The toggle for whether or not a graph is displayed when the NN finishes
 #
 print("dataCSV: " + str(dataCSV) + "\ndataSeperator: " + str(dataSeperator) + "\noutputDims: " + str(outputDims) + "\nvisualizer: " + str(visualizer) + "\n")
 #
@@ -69,7 +78,7 @@ model.compile(loss = 'sparse_categorical_crossentropy', optimizer = 'adam', metr
 
 # Fit the model to the dataset (run the model for training)
 if (visualizer):
-    history = model.fit(X, Y, validation_split=0.33, epochs=150, batch_size=10, verbose=0)
+    history = model.fit(X, Y, validation_split = 0.33, epochs = 300, batch_size = 10, verbose = 1)
 else:
     model.fit(X, Y, epochs = 300, batch_size = 10)
 
