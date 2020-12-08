@@ -9,6 +9,6 @@ Python 3 or higher - https://www.python.org/downloads/   |   pip (used to instal
 
 # Installation
 Install Keras and NumPy.
-Clone or download the <ENTER FILE NAME HERE!!!!!!!!!!!!!!!!!!!!!!> file as well as the training data .csv file.
+Clone or download the KerasPredictor.py file as well as the training data .csv file.
 Using the change directory command, move to the directory with the file.
-In terminal or command-line, use "python3 <ENTER FILE NAME HERE!!!!!!!!!!!!!!!!!!!!!!!>" Because of the number of layers and the size of training data, the network may take some time to begin return epochs.
+In terminal or command-line, use "python3 KerasPredictor.py" Because of the number of layers and the size of training data, the network may take some time to begin return epochs.
