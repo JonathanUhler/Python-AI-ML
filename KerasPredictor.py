@@ -28,10 +28,7 @@ dataCSV = data[0] # --> The input with with data for training and testing
 dataSeperator = data[1] # --> The character that seperates data elements in the input file
 outputDims = data[2] # --> The width of the output layer
 visualizer = data[3] # --> The toggle for whether or not a graph is displayed when the NN finishes
-# dataCSV = 'banknote-authentication.csv' # --> The input with with data for training and testing
-# dataSeperator = ',' # --> The character that seperates data elements in the input file
-# outputDims = 10 # --> The width of the output layer
-# visualizer = False # --> The toggle for whether or not a graph is displayed when the NN finishes
+debug = data[4] # --> The toggle for the debug messages
 #
 print("dataCSV: " + str(dataCSV) + "\ndataSeperator: " + str(dataSeperator) + "\noutputDims: " + str(outputDims) + "\nvisualizer: " + str(visualizer) + "\n")
 #
@@ -84,7 +81,7 @@ else:
 
 
 # Let the model evaluate itself
-_, accuracy = model.evaluate(X, Y)
+_, accuracy = model.evaluate(X, Y) # --> _, accuracy: discard the accuracy for X data and keep for Y data
 print('Accuracy: %.2f' % (accuracy * 100))
 
 
@@ -168,9 +165,10 @@ for i in range(len(prediction)):
         bestPred *= highestPossibleAnswer
 
     # Print each of the test casses from the testing dataset
-    print("Test case: " + str(i + 1))
-    # Print the best prediction, the useful (or rounded) prediction, and the expected result
-    print("Prediction (Actual): " + str(float(bestPred)) + " | Prediction (Useful): " + str(round(float(bestPred), 0)) + " | Expected: " + str(answer) + "\n")
+    if (debug):
+        print("Test case: " + str(i + 1))
+        # Print the best prediction, the useful (or rounded) prediction, and the expected result
+        print("Prediction (Actual): " + str(float(bestPred)) + " | Prediction (Useful): " + str(round(float(bestPred), 0)) + " | Expected: " + str(answer) + "\n")
 
 
 # =================================================================================================

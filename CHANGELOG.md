@@ -14,3 +14,9 @@ Version conventions (IMPORTANT): The version conventions used for this file are 
 	-------		-------		----------------------------------------------------
 	1.0.0		12/8/20		Changes in this version:
 								-First acceptably working version of KerasPredictor.py
+								
+	1.1.0		12/8/20		Changes in this version:
+								-Added the debug boolean option to the config file
+								-Added a right and non-right triangle side generator file
+								-Moved old testing datasets to a "deprecated datasets" folder
+									-Created a new dataset (given side lengths, determine if a triangle is right)
