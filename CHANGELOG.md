@@ -20,3 +20,9 @@ Version conventions (IMPORTANT): The version conventions used for this file are 
 								-Added a right and non-right triangle side generator file
 								-Moved old testing datasets to a "deprecated datasets" folder
 									-Created a new dataset (given side lengths, determine if a triangle is right)
+									
+	1.2.0		12/9/20		Changes in this version:
+								-Added a debug option and the number of epochs to the config file
+								-Changed "import keras.layers" to "import keras.layers.core"
+								-Rebuilt the cleanUp(lst) function
+								-Add an inferencing dataset

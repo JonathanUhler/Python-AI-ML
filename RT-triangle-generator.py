@@ -13,7 +13,7 @@ import math # Used for square root
 # =================================================================================================
 # GLOBAL VARIABLES
 #
-numTrianlges = 5000
+numTrianlges = 2500
 maxSideLength = 1000
 dataArray = []
 #
@@ -84,25 +84,30 @@ def notRight(a, b, delta):
 #
 # None
 #
-def writeData(data):
-    f = open("triangle-sides.csv", "a")
+def writeData(data, path):
+    f = open(path, "a")
     f.write(data)
     f.close()
 # end: def writeData
 
 
-for i in range(numTrianlges):
-    # Get two random values for the a and b sides
-    a = (random.random() * maxSideLength)
-    b = (random.random() * maxSideLength)
+def createData(filePath):
+    for i in range(numTrianlges):
+        # Get two random values for the a and b sides
+        a = (random.random() * maxSideLength)
+        b = (random.random() * maxSideLength)
 
-    # add the a, b, c, and the triangle status to an array of data
-    dataArray.append(str(a) + "," + str(b) + "," + str(right(a, b)) + ",1\n")
-    dataArray.append(str(a) + "," + str(b) + "," + str(notRight(a, b, (random.random() * 10))) + ",0\n")
+        # add the a, b, c, and the triangle status to an array of data
+        dataArray.append(str(a) + "," + str(b) + "," + str(right(a, b)) + ",1\n")
+        dataArray.append(str(a) + "," + str(b) + "," + str(notRight(a, b, (random.random() * 10))) + ",0\n")
 
-# randomize the array
-random.shuffle(dataArray)
+    # randomize the array
+    random.shuffle(dataArray)
 
-# print each line of the array to a data file
-for i in range(len(dataArray)):
-    writeData(dataArray[i])
+    # print each line of the array to a data file
+    for i in range(len(dataArray)):
+        writeData(dataArray[i], filePath)
+
+
+createData("triangle-sides.csv")
+createData("triangle-inference.csv")
