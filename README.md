@@ -8,11 +8,12 @@ Python 3 or higher - https://www.python.org/downloads/   |   pip (used to instal
 
 
 # Installation
-Install Keras and NumPy.
-Clone or download the KerasPredictor.py file as well as the training data .csv file.
-Using the change directory command, move to the directory with the file.
-In terminal or command-line, use "python3 KerasPredictor.py" Because of the number of layers and the size of training data, the network may take some time to begin return epochs.
+Install Keras, NumPy, and MatPlotLib. Clone or download the KerasPredictor.py file as well as the training data .csv file.
+
+
+# Usage/Running
+Using the change directory command in command-line, move to the directory with the file. To generate new testing data, open and clear the "triangle-sides.csv" file and then run "python3 RT-triangle-generator-py" in command-line. To run the network, run "python3 KerasPredictor.py" in command-line. You should see the status for all 300 epochs begin printing. If you have debug enabled, all the test-case predictions will print after the epochs are done.
 
 
 # PredictorCongif.json
-In order to change the properties of the predictor (e.g. the input file, whether the visualizer is enabled, etc.) open the PredictorConfig.json file and change the elements. The elements are: input file, data seperation character, output layer width, and visualizer enabler.
+In order to change the properties of the predictor (e.g. the input file, whether the visualizer is enabled, etc.) open the PredictorConfig.json file and change the elements. The elements are: input file, data seperation character, output layer width, visualizer enabler, and debug message enable.
