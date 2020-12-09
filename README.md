@@ -16,4 +16,4 @@ Using the change directory command in command-line, move to the directory with t
 
 
 # PredictorCongif.json
-In order to change the properties of the predictor (e.g. the input file, whether the visualizer is enabled, etc.) open the PredictorConfig.json file and change the elements. The elements are: input file, data seperation character, output layer width, visualizer enabler, and debug message enable.
+In order to change the properties of the predictor (e.g. the input file, whether the visualizer is enabled, etc.) open the PredictorConfig.json file and change the elements. The elements are: input file, data seperation character, output layer width, visualizer enabler, debug message enable, epoch count.
