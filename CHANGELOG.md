@@ -30,3 +30,6 @@ Version conventions (IMPORTANT): The version conventions used for this file are 
 	1.3.0		12/9/20		Changes in this version:
 								-"Fixed" an issue with the network seemingly not learning and just outputing 50% accuracy
 									-IMPORTANT: This was not really a bug, the issue causing this was the large triangle max side in the triangle genertor. Decreating this number (or dramatically increasing the data to millions of points) allowed to network to find patterns easier
+									
+	1.4.0		12/9/20		Changes in this version:
+								-Added an option to save the model

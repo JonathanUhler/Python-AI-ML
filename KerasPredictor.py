@@ -50,8 +50,9 @@ visualizer = data[3] # --> The toggle for whether or not a graph is displayed wh
 debug = data[4] # --> The toggle for the debug messages
 #       data[5] --> used later as the location of the inference data file
 #       data[6] --> used later as the number of epochs
+saveModel = data[7] # --> The toggle for whether or not the trained model will be saved
 #
-print("dataCSV: " + str(dataCSV) + "\ndataSeperator: " + str(dataSeperator) + "\noutputDims: " + str(outputDims) + "\nvisualizer: " + str(visualizer) + "\n")
+print("dataCSV: " + str(dataCSV) + "\ndataSeperator: " + str(dataSeperator) + "\noutputDims: " + str(outputDims) + "\nvisualizer: " + str(visualizer) + "\ndebug: " + str(debug) + "\nsaveModel: " + str(saveModel) + "\n")
 #
 # end: GLOBAL VARIABLES
 
@@ -100,6 +101,9 @@ if (visualizer):
 else:
     model.fit(X, Y, epochs = data[6], batch_size = 10)
 
+# Save the model if wanted
+if (saveModel):
+    model.save("SavedModel")
 
 # Show the accuracy at the end of the epochs
 _, accuracy = model.evaluate(X, Y) # --> _, accuracy: discard the accuracy for X data and keep for Y data
