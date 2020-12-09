@@ -13,8 +13,8 @@ import math # Used for square root
 # =================================================================================================
 # GLOBAL VARIABLES
 #
-numTrianlges = 2500
-maxSideLength = 1000
+numTrianlges = 10000
+maxSideLength = 100
 dataArray = []
 #
 # end: GLOBAL VARIABLES
