@@ -19,5 +19,9 @@ To generate new testing data, open and clear the "triangle-sides.csv" and "trian
 Using the change directory command in command-line, move to the directory with the file. To run the network, run "python3 KerasPredictor.py" in command-line. You should see the status for all of the epochs begin printing. If you have debug enabled, all the test-case predictions will print after the epochs are done (after this, you will also be able to see the inference accuracy). If you have the visualizer graph enabled, the graph should launch as a seperate python app after the data has been printed.
 
 
+# KerasInferencer.py Usage
+The inferencer loads a saved model and uses the inference dataset to test it without having to train it first. To create a saved model, run the KerasPredictor.py with "save" set to true. A new model should be saved. To load and test the model, set the "loadModel" to be the path to the model in question, then run the KerasInferencer.py and the model will be inferenced. Unless the inference dataset is very large, I suggest setting debug to 1 (print incorrect cases) or 2 (print all cases) so you can see the inferences.
+
+
 # PredictorCongif.json
-In order to change the properties of the predictor (e.g. the input file, whether the visualizer is enabled, etc.) open the PredictorConfig.json file and change the elements. The elements are: input file, data seperation character, output layer width, visualizer enabler, debug message enable, epoch count.
+In order to change the properties of the predictor (e.g. the input file, whether the visualizer is enabled, etc.) open the PredictorConfig.json file and change the elements. The elements are: train file location, data seperator, output width, visualizer toggle, debug toggle, inference file location, number of epochs, save toggle, train only toggle, and saved model location.
