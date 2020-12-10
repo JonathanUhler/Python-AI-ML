@@ -13,8 +13,9 @@ import math # Used for square root
 # =================================================================================================
 # GLOBAL VARIABLES
 #
-numTraining = 5000
+numTraining = 10000
 numInference = 1000
+percRight = 50
 maxSideTrain = 100
 maxSideInf = 100
 dataArray = []
@@ -97,14 +98,17 @@ def createData(filePath, amt, maxSide):
 
     dataArray = []
 
-    for i in range(int(amt / 2)):
+    for i in range(int((amt / 2) / 50)):
         # Get two random values for the a and b sides
         a = (random.random() * maxSide)
         b = (random.random() * maxSide)
 
         # add the a, b, c, and the triangle status to an array of data
-        dataArray.append(str(a) + "," + str(b) + "," + str(right(a, b)) + ",1\n")
-        dataArray.append(str(a) + "," + str(b) + "," + str(notRight(a, b, (random.random() * 10))) + ",0\n")
+        for j in range(percRight):
+            dataArray.append(str(a) + "," + str(b) + "," + str(right(a, b)) + ",1\n")
+
+        for k in range(100 - percRight):
+            dataArray.append(str(a) + "," + str(b) + "," + str(notRight(a, b, (random.random() * 10))) + ",0\n")
 
     # randomize the array
     random.shuffle(dataArray)
