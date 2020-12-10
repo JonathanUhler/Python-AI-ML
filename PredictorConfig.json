@@ -1,3 +1,10 @@
 {
-    "configData" :      ["triangle-sides.csv", ",", 10, false, true, "triangle-inference.csv", 50, false]
+    "trainFile"    :   "triangle-sides.csv",
+    "dataSeperator" :   ",",
+    "outputWidth"   :   10,
+    "visualizer"    :   false,
+    "debug"         :   true,
+    "inferFile"     :   "triangle-inference.csv",
+    "numEpochs"     :   50,
+    "save"          :   false
 }

@@ -13,9 +13,10 @@ import math # Used for square root
 # =================================================================================================
 # GLOBAL VARIABLES
 #
-numTraining = 1000
-numInference = 100
-maxSideLength = 100
+numTraining = 10000
+numInference = 1000
+maxSideTrain = 100
+maxSideInf = 100
 dataArray = []
 #
 # end: GLOBAL VARIABLES
@@ -92,14 +93,14 @@ def writeData(data, path):
 # end: def writeData
 
 
-def createData(filePath, amt):
+def createData(filePath, amt, maxSide):
 
     dataArray = []
 
     for i in range(int(amt / 2)):
         # Get two random values for the a and b sides
-        a = (random.random() * maxSideLength)
-        b = (random.random() * maxSideLength)
+        a = (random.random() * maxSide)
+        b = (random.random() * maxSide)
 
         # add the a, b, c, and the triangle status to an array of data
         dataArray.append(str(a) + "," + str(b) + "," + str(right(a, b)) + ",1\n")
@@ -113,5 +114,5 @@ def createData(filePath, amt):
         writeData(dataArray[i], filePath)
 
 
-createData("triangle-sides.csv", numTraining)
-createData("triangle-inference.csv", numInference)
+createData("triangle-sides.csv", numTraining, maxSideTrain)
+createData("triangle-inference.csv", numInference, maxSideInf)

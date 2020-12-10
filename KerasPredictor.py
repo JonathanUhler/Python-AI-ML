@@ -41,7 +41,7 @@ def cleanUp(lst):
 with open('PredictorConfig.json') as PredictorConfigData:
     data = json.load(PredictorConfigData)
 #
-data = data['configData']
+data = [data['trainFile'], data['dataSeperator'], data['outputWidth'], data['visualizer'], data['debug'], data['inferFile'], data['numEpochs'], data['save']]
 #
 dataCSV = data[0] # --> The input with with data for training and testing
 dataSeperator = data[1] # --> The character that seperates data elements in the input file
