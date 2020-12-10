@@ -13,7 +13,7 @@ import math # Used for square root
 # =================================================================================================
 # GLOBAL VARIABLES
 #
-numTrianlges = 10000
+numTrianlges = 10000 # --> the total number of triangles with be 2x this
 maxSideLength = 100
 dataArray = []
 #

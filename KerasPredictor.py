@@ -80,8 +80,8 @@ model = Sequential()
 # NETWORK SPECIFICATIONS:
 #
 # Input layer: inputDims nodes
-# Hidden layer 1: (5 * inputDims) nodes, ReLU activation
-# Hidden layer 2: (2 * inputDims) nodes, ReLU activation
+# Hidden layer 1: (4 * inputDims) nodes, ReLU activation
+# Hidden layer 2: (3 * inputDims) nodes, ReLU activation
 # Output layer: outputDims node, softmax activation
 #
 model.add(Dense((inputDims * 4), input_dim = inputDims, activation = 'relu')) # "input_dim = ..." creates the input layer and
@@ -207,7 +207,7 @@ print("Number of times correct: " + str(len(prediction) - numTimesWrong) + "/" +
 #
 # legendLoc:    the location of the legend on the screen
 #
-# Arguments--
+# Returns--
 #
 # None
 #
