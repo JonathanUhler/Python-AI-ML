@@ -143,7 +143,7 @@ inference = loadtxt(data[5], delimiter = dataSeperator)
 # Define the new datasets for the inference data
 infX = inference[:,0:inputDims]
 infY = inference[:,inputDims]
-numTimesWrong = 0 # Number of times the NN was incorrect
+numTimesCorrect = 0 # Number of times the NN was incorrect
 
 infXList = cleanUp(infX)
 prediction = model.predict(infXList)
@@ -178,10 +178,10 @@ for i in range(len(prediction)):
         # Print the best prediction, the useful (or rounded) prediction, and the expected result
         print("Prediction (Accuarcy): " + str(float(bestPred)) + " | Prediction (Node): " + str(bestNode) + " | Expected: " + str(answer) + "\n")
 
-        if (not bestNode == answer):
-            numTimesWrong += 1 # If wrong, add to this value
+        if (bestNode == answer):
+            numTimesCorrect += 1 # If wrong, add to this value
 
-print("Number of times correct: " + str(len(prediction) - numTimesWrong) + "/" + str(len(prediction))) # Print the number of times correct
+print("Number of times correct: " + str(numTimesCorrect) + "/" + str(len(prediction)) + " | Accuracy: " + str((numTimesCorrect / len(prediction)) * 100) + "%") # Print the number of times correct
 
 
 # =================================================================================================

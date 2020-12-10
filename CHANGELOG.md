@@ -33,3 +33,7 @@ Version conventions (IMPORTANT): The version conventions used for this file are 
 									
 	1.4.0		12/9/20		Changes in this version:
 								-Added an option to save the model
+
+	1.4.1		12/9/20		Changes in this version:
+								-Added seperate variables in the dataset generator for number of right triangles and number of non-right triangles
+								-Added a display of the percent after showing debug data

@@ -13,7 +13,8 @@ import math # Used for square root
 # =================================================================================================
 # GLOBAL VARIABLES
 #
-numTrianlges = 10000 # --> the total number of triangles with be 2x this
+numTraining = 1000
+numInference = 100
 maxSideLength = 100
 dataArray = []
 #
@@ -91,8 +92,11 @@ def writeData(data, path):
 # end: def writeData
 
 
-def createData(filePath):
-    for i in range(numTrianlges):
+def createData(filePath, amt):
+
+    dataArray = []
+
+    for i in range(int(amt / 2)):
         # Get two random values for the a and b sides
         a = (random.random() * maxSideLength)
         b = (random.random() * maxSideLength)
@@ -109,5 +113,5 @@ def createData(filePath):
         writeData(dataArray[i], filePath)
 
 
-createData("triangle-sides.csv")
-createData("triangle-inference.csv")
+createData("triangle-sides.csv", numTraining)
+createData("triangle-inference.csv", numInference)
