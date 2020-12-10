@@ -1,5 +1,5 @@
 {
-    "trainFile"    :   "triangle-sides.csv",
+    "trainFile"     :   "triangle-sides.csv",
     "dataSeperator" :   ",",
     "outputWidth"   :   10,
     "visualizer"    :   false,
@@ -7,5 +7,6 @@
     "inferFile"     :   "triangle-inference.csv",
     "numEpochs"     :   50,
     "save"          :   false,
-    "trainOnly"     :   false
+    "trainOnly"     :   false,
+    "loadModel"     :   "Models/Train_300k"
 }

@@ -41,7 +41,7 @@ def cleanUp(lst):
 with open('PredictorConfig.json') as PredictorConfigData:
     data = json.load(PredictorConfigData)
 #
-data = [data['trainFile'], data['dataSeperator'], data['outputWidth'], data['visualizer'], data['debug'], data['inferFile'], data['numEpochs'], data['save'], data['trainOnly']]
+data = [data['trainFile'], data['dataSeperator'], data['outputWidth'], data['visualizer'], data['debug'], data['inferFile'], data['numEpochs'], data['save'], data['trainOnly'], data['loadModel']]
 #
 dataCSV = data[0] # --> The input with with data for training and testing
 dataSeperator = data[1] # --> The character that seperates data elements in the input file
@@ -52,6 +52,7 @@ debug = data[4] # --> On a scale of 0-2. 0) no debug, 1) only wrong cases, 2) al
 #       data[6] --> used later as the number of epochs
 saveModel = data[7] # --> The toggle for whether or not the trained model will be saved
 trainOnly = data[8] # --> The toggle for whether or not the network will only train or train and inference
+loadModel = data[9] # --> The path to a saved model
 #
 print("dataCSV: " + str(dataCSV) + "\ndataSeperator: " + str(dataSeperator) + "\noutputDims: " + str(outputDims) + "\nvisualizer: " + str(visualizer) + "\ndebug: " + str(debug) + "\nsaveModel: " + str(saveModel) + "\n")
 #

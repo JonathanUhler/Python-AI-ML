@@ -45,3 +45,8 @@ Version conventions (IMPORTANT): The version conventions used for this file are 
 	1.5.0		12/10/20	Changes in this version:
 								-Add two new functions to handle the new "trainOnly" option in the config
 								-Add a Models/ folder to hold trained example models
+
+	1.6.0		12/10/20	Changes in this version:
+								-Add an inferencing program "KerasInferencer.py" that takes a saved model to inference
+								-Add another option in the config to state the saved model to inference called "loadModel"
+								-Trained and saved a model on 300,000 training points as a default model to inference
