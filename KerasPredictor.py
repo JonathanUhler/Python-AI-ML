@@ -41,16 +41,17 @@ def cleanUp(lst):
 with open('PredictorConfig.json') as PredictorConfigData:
     data = json.load(PredictorConfigData)
 #
-data = [data['trainFile'], data['dataSeperator'], data['outputWidth'], data['visualizer'], data['debug'], data['inferFile'], data['numEpochs'], data['save']]
+data = [data['trainFile'], data['dataSeperator'], data['outputWidth'], data['visualizer'], data['debug'], data['inferFile'], data['numEpochs'], data['save'], data['trainOnly']]
 #
 dataCSV = data[0] # --> The input with with data for training and testing
 dataSeperator = data[1] # --> The character that seperates data elements in the input file
 outputDims = data[2] # --> The width of the output layer
 visualizer = data[3] # --> The toggle for whether or not a graph is displayed when the NN finishes
-debug = data[4] # --> The toggle for the debug messages
+debug = data[4] # --> On a scale of 0-2. 0) no debug, 1) only wrong cases, 2) all cases
 #       data[5] --> used later as the location of the inference data file
 #       data[6] --> used later as the number of epochs
 saveModel = data[7] # --> The toggle for whether or not the trained model will be saved
+trainOnly = data[8] # --> The toggle for whether or not the network will only train or train and inference
 #
 print("dataCSV: " + str(dataCSV) + "\ndataSeperator: " + str(dataSeperator) + "\noutputDims: " + str(outputDims) + "\nvisualizer: " + str(visualizer) + "\ndebug: " + str(debug) + "\nsaveModel: " + str(saveModel) + "\n")
 #
@@ -137,51 +138,93 @@ def highest(lst):
 # end: def highest
 
 
-# Read in the new inference/testing file data
-inference = loadtxt(data[5], delimiter = dataSeperator)
+# =================================================================================================
+# def printDebug
+#
+# A function to handle printing debug messages
+#
+# Arguments--
+#
+# testCase:         the test case number being printed
+#
+# nodeBrightness:   each of the probabilities for the output nodes
+#
+# msg:              the message to be printed
+#
+# Returns--
+#
+# None
+#
+def printDebug(testCase, nodeBrightness, msg):
+    print("Test case: " + str(testCase))
+    print("Node brightness: " + str(nodeBrightness))
+    # Print the best prediction, the useful (or rounded) prediction, and the expected result
+    print(msg)
+# end: printDebug
 
-# Define the new datasets for the inference data
-infX = inference[:,0:inputDims]
-infY = inference[:,inputDims]
-numTimesCorrect = 0 # Number of times the NN was incorrect
 
-infXList = cleanUp(infX)
-prediction = model.predict(infXList)
+# =================================================================================================
+# def inference
+#
+# A function that is called based on the status of the trainOnly variable. If trainOnly is false, the
+# data will also be inferenced
+#
+# Arugments--
+#
+# None
+#
+# Returns--
+#
+# None
+#
+def inference():
+    # Read in the new inference/testing file data
+    inference = loadtxt(data[5], delimiter = dataSeperator)
 
-# Go through all of the predictions for each of the X data examples
-for i in range(len(prediction)):
+    # Define the new datasets for the inference data
+    infX = inference[:,0:inputDims]
+    infY = inference[:,inputDims]
+    numTimesCorrect = 0 # Number of times the NN was incorrect
 
-    # Declare the expected result
-    answer = infY[i]
-    highestPossibleAnswer = 0
+    infXList = cleanUp(infX)
+    prediction = model.predict(infXList)
 
-    # Clean up the prediction
-    predictions = cleanUp(prediction[i])
-    bestPred = 0
+    # Go through all of the predictions for each of the X data examples
+    for i in range(len(prediction)):
 
-    # Find the best prediction
-    bestPred, bestNode = highest(predictions)
+        # Declare the expected result
+        answer = infY[i]
+        highestPossibleAnswer = 0
 
-    # Account for datasets that might have answers larger than 1 and find the largest answer in the dataset
-    for j in range(len(infY)):
+        # Clean up the prediction
+        predictions = cleanUp(prediction[i])
+        bestPred = 0
 
-        if (infY[j] >= highestPossibleAnswer):
-            highestPossibleAnswer = infY[j]
+        # Find the best prediction
+        bestPred, bestNode = highest(predictions)
 
-    # Adjust the output value to change from 0-1 to 0-the max answer value
-    bestPred *= highestPossibleAnswer
+        # Account for datasets that might have answers larger than 1 and find the largest answer in the dataset
+        for j in range(len(infY)):
 
-    # Print each of the test casses from the testing dataset
-    if (debug):
-        print("Test case: " + str(i + 1))
-        print("Node brightness: " + str(predictions))
-        # Print the best prediction, the useful (or rounded) prediction, and the expected result
-        print("Prediction (Accuarcy): " + str(float(bestPred)) + " | Prediction (Node): " + str(bestNode) + " | Expected: " + str(answer) + "\n")
+            if (infY[j] >= highestPossibleAnswer):
+                highestPossibleAnswer = infY[j]
+
+        # Adjust the output value to change from 0-1 to 0-the max answer value
+        bestPred *= highestPossibleAnswer
+
+        # Print each of the test casses from the testing dataset
+        if (debug == 2):
+            printDebug(i + 1, predictions, "Prediction (Accuarcy): " + str(float(bestPred)) + " | Prediction (Node): " + str(bestNode) + " | Expected: " + str(answer) + "\n")
+
+        elif (debug == 1 and not (bestNode == answer)):
+                printDebug(i + 1, predictions, "Prediction (Accuarcy): " + str(float(bestPred)) + " | Prediction (Node): " + str(bestNode) + " | Expected: " + str(answer) + "\n")
+
 
         if (bestNode == answer):
             numTimesCorrect += 1 # If wrong, add to this value
 
-print("Number of times correct: " + str(numTimesCorrect) + "/" + str(len(prediction)) + " | Accuracy: " + str((numTimesCorrect / len(prediction)) * 100) + "%") # Print the number of times correct
+    print("Number of times correct: " + str(numTimesCorrect) + "/" + str(len(prediction)) + " | Accuracy: " + str((numTimesCorrect / len(prediction)) * 100) + "%") # Print the number of times correct
+# end: def inference
 
 
 # =================================================================================================
@@ -227,6 +270,10 @@ def showChart(plot1, plot2, title, ylabel, xlabel, legend1, legend2, legendLoc):
 
 
 # Call the show chart function
-if (visualizer):
+if (visualizer and not trainOnly):
     showChart('accuracy', 'val_accuracy', 'model accuracy', 'accuracy', 'epoch', 'train', 'test', 'upper left')
     showChart('loss', 'val_loss', 'model loss', 'loss', 'epoch', 'train', 'test', 'upper left')
+
+if (not trainOnly):
+    # Inference the data
+    inference()

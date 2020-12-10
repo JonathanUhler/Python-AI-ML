@@ -3,8 +3,9 @@
     "dataSeperator" :   ",",
     "outputWidth"   :   10,
     "visualizer"    :   false,
-    "debug"         :   true,
+    "debug"         :   1,
     "inferFile"     :   "triangle-inference.csv",
     "numEpochs"     :   50,
-    "save"          :   false
+    "save"          :   false,
+    "trainOnly"     :   false
 }

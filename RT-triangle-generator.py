@@ -13,7 +13,7 @@ import math # Used for square root
 # =================================================================================================
 # GLOBAL VARIABLES
 #
-numTraining = 10000
+numTraining = 5000
 numInference = 1000
 maxSideTrain = 100
 maxSideInf = 100

@@ -41,3 +41,7 @@ Version conventions (IMPORTANT): The version conventions used for this file are 
 	1.4.2		12/10/20	Changes in this version:
 								-Reorganized PredictorConfig.json to include labels explaining the use of the config data elements
 								-Added more customization to the RT-triangle-generator.py file
+
+	1.5.0		12/10/20	Changes in this version:
+								-Add two new functions to handle the new "trainOnly" option in the config
+								-Add a Models/ folder to hold trained example models
