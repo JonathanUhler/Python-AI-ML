@@ -8,5 +8,5 @@
     "numEpochs"     :   50,
     "save"          :   false,
     "trainOnly"     :   false,
-    "loadModel"     :   "Models/Train_500k"
+    "loadModel"     :   "Models/Train_1M"
 }
